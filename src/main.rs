@@ -29,26 +29,26 @@ fn main() {
 fn get_flask(x_coord: &mut i32, y_coord: &mut i32) {
     let mut enigo = Enigo::new(&Settings::default()).unwrap();
     // move cursor to quad tab
-    enigo.move_mouse(275, 152, Coordinate::Abs);
+    let _ = enigo.move_mouse(275, 152, Coordinate::Abs);
     thread::sleep(Duration::from_millis(500));
-    enigo.button(Button::Left, Click);
+    let _ = enigo.button(Button::Left, Click);
     // move cursor to flask
-    enigo.move_mouse(*x_coord, *y_coord, Coordinate::Abs);
+    let _ = enigo.move_mouse(*x_coord, *y_coord, Coordinate::Abs);
     thread::sleep(Duration::from_millis(500));
-    enigo.button(Button::Left, Click);
+    let _ = enigo.button(Button::Left, Click);
     *x_coord += 35;
     if *x_coord == 840 {
         *y_coord += 70;
         *x_coord = 35;
     }
     // move cursor to currency tab
-    enigo.move_mouse(90, 150, Coordinate::Abs);
+    let _ = enigo.move_mouse(90, 150, Coordinate::Abs);
     thread::sleep(Duration::from_millis(500));
-    enigo.button(Button::Left, Click);
+    let _ = enigo.button(Button::Left, Click);
     // place flask
-    enigo.move_mouse(400, 600, Coordinate::Abs);
+    let _ = enigo.move_mouse(400, 600, Coordinate::Abs);
     thread::sleep(Duration::from_millis(500));
-    enigo.button(Button::Left, Click);
+    let _ = enigo.button(Button::Left, Click);
 }
 
 fn roll_flask() {
@@ -60,22 +60,23 @@ fn roll_flask() {
         let keys: Vec<Keycode> = device_state.get_keys();
         let pixel = autopilot::screen::get_color(point).unwrap();
         if (pixel.0[0] == 231) & (pixel.0[1] == 180) & (pixel.0[2] == 119){
-            enigo.key(Key::Control, Press);
-            enigo.button(Button::Left, Click);
-            enigo.move_mouse(2600, 850, Coordinate::Abs);
+            let _ = enigo.key(Key::Control, Press);
+            let _ = enigo.button(Button::Left, Click);
+            // move cursor to inventory
+            let _ = enigo.move_mouse(2600, 850, Coordinate::Abs);
             thread::sleep(Duration::from_millis(500));
-            enigo.button(Button::Left, Click);
-            enigo.key(Key::Control, Release);
+            let _ = enigo.button(Button::Left, Click);
+            let _ = enigo.key(Key::Control, Release);
             break;
         }
         // grab alteration orb
-        enigo.move_mouse(150, 350, Coordinate::Abs);
+        let _ = enigo.move_mouse(150, 350, Coordinate::Abs);
         thread::sleep(Duration::from_millis(500));
-        enigo.button(Button::Right, Click);
+        let _ = enigo.button(Button::Right, Click);
         // use orb on flask
-        enigo.move_mouse(400, 600, Coordinate::Abs);
+        let _ = enigo.move_mouse(400, 600, Coordinate::Abs);
         thread::sleep(Duration::from_millis(500));
-        enigo.button(Button::Left, Click);
+        let _ = enigo.button(Button::Left, Click);
         let pixel = autopilot::screen::get_color(point).unwrap();
         println!(
             "Pixel color at 500, 700: {},{},{},{}",
@@ -83,12 +84,13 @@ fn roll_flask() {
         );
         // check for pixel match on boarder
         if (pixel.0[0] == 231) & (pixel.0[1] == 180) & (pixel.0[2] == 119){
-            enigo.key(Key::Control, Press);
-            enigo.button(Button::Left, Click);
-            enigo.move_mouse(2600, 850, Coordinate::Abs);
+            let _ = enigo.key(Key::Control, Press);
+            let _ = enigo.button(Button::Left, Click);
+            // move cursor to inventory
+            let _ = enigo.move_mouse(2600, 850, Coordinate::Abs);
             thread::sleep(Duration::from_millis(500));
-            enigo.button(Button::Left, Click);
-            enigo.key(Key::Control, Release);
+            let _ = enigo.button(Button::Left, Click);
+            let _ = enigo.key(Key::Control, Release);
             break;
         }
         if keys.contains(&Keycode::K) {
